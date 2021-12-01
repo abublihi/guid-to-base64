@@ -1,0 +1,25 @@
+{
+    "name": "abublihi/guid-to-base64",
+    "description": "Convert microsoft ldap objectGuid to Base64.",
+    "keywords": ["guid", "objectGuid", "base64", "microsoft", "immutableid", "immutable id"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdulsalam Saleh Albulayhi",
+            "email": "abublihi@gmail.com"
+        }
+    ],
+    "type": "project",
+    "require": {
+		"php": "^7.2 || ^8.0",
+        "ramsey/uuid": "^4.2"
+    },
+    "require-dev": {
+		"phpunit/phpunit": "9.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Abublihi\\Guid\\": "src/"
+        }
+    }
+}
