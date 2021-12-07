@@ -3,6 +3,7 @@
 namespace Abublihi\Guid;
 
 use Ramsey\Uuid\Guid\Guid;
+use Ramsey\Uuid\Uuid;
 
 /**
 *  Takes a GUID and convert it to base64 that is compatible with microsoft immutable id
@@ -17,7 +18,7 @@ class ToBase64
 
     public function __construct($uuid)
     {
-        $this->uuid = Guid::fromString($uuid);
+        $this->uuid = Uuid::fromString($uuid);
         $this->uuidFields = $this->uuid->getFields();
         $this->base64 = base64_encode($this->getLittleEndian());
     }
@@ -36,12 +37,12 @@ class ToBase64
     {
         return pack(
             'ISSCC',
-            hexdec($this->uuidFields->getTimeLow()),
-            hexdec($this->uuidFields->getTimeMid()),
-            hexdec($this->uuidFields->getTimeHiAndVersion()),
-            hexdec($this->uuidFields->getClockSeqHiAndReserved()),
-            hexdec($this->uuidFields->getClockSeqLow()),
-        ).hex2bin($this->uuidFields->getNode());
+            $this->uuidFields['time_low'],
+            $this->uuidFields['time_mid'],
+            $this->uuidFields['time_hi_and_version'],
+            $this->uuidFields['clock_seq_hi_and_reserved'],
+            $this->uuidFields['clock_seq_low']
+        ).hex2bin($this->uuid->getNodeHex());
     }
 
     /**
